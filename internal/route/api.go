@@ -9,7 +9,7 @@ import (
 
 func SetupRoutes(app *fiber.App) {
 	var (
-		api = app.Group("/api/v1")
+		api = app.Group("/api/notifications")
 	)
 
 	rest.NewHealthCheckHandler().HealthCheckRoute(api)

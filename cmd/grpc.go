@@ -8,9 +8,11 @@ import (
 	"runtime"
 	"syscall"
 
+	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/cmd/proto/notification"
 	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/adapter"
 	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/infrastructure"
 	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/infrastructure/config"
+	notificationService "github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification/handler/grpc"
 	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/pkg/validator"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -51,7 +53,7 @@ func RunServeGRPC(cmd *flag.FlagSet, args []string) {
 		log.Fatal().Err(err).Msg("Failed to sync adapters")
 	}
 
-	// notification.RegisterNotificationServiceServer(grpcServer, notificationService.NewNotificationEmailAPI())
+	notification.RegisterNotificationServiceServer(grpcServer, notificationService.NewNotificationEmailAPI())
 
 	infrastructure.InitializeLogger(
 		envs.App.Environtment,
