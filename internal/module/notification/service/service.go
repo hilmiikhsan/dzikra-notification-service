@@ -44,8 +44,9 @@ func (s *notificationTemplateService) SendEmail(ctx context.Context, req dto.Int
 
 	var tpl bytes.Buffer
 	err = tmpl.Execute(&tpl, map[string]string{
-		"full_name":  req.Placeholder["full_name"],
-		"otp_number": req.Placeholder["otp_number"],
+		"full_name":      req.Placeholder["full_name"],
+		"otp_number":     req.Placeholder["otp_number"],
+		"url_reset_link": req.Placeholder["url_reset_link"],
 	})
 	if err != nil {
 		log.Error().Err(err).Msg("Failed to execute email template with placeholder")

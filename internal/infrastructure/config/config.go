@@ -34,10 +34,10 @@ type Config struct {
 		ConnMaxLifetime   int `env:"DB_CONN_MAX_LIFETIME" env-default:"0" env-description:"database conn max lifetime in seconds"`
 	}
 	Notification struct {
-		SMTPHost         string `env:"SMTP_HOST" env-default:"smtp.gmail.com"`
-		SMTPPort         string `env:"SMTP_PORT" env-default:"587"`
-		SMTPuthEmail     string `env:"SMTP_AUTH_EMAIL" env-default:""`
-		SMTPAuthPassword string `env:"SMTP_AUTH_PASSWORD" env-default:""`
+		MailHost     string `env:"MAIL_HOST" env-default:"smtp.gmail.com"`
+		MailPort     string `env:"MAIL_PORT" env-default:"587"`
+		MailUser     string `env:"MAIL_USER" env-default:""`
+		MailPassword string `env:"MAIL_PASSWORD" env-default:""`
 	}
 	DzikraPostgres struct {
 		Host     string `env:"DZIKRA_POSTGRES_HOST" env-default:"localhost"`
@@ -101,10 +101,10 @@ func (c *Configure) Initialize() {
 		Envs.DB.MaxOpenCons = utils.GetIntEnv("DB_MAX_OPEN_CONS", Envs.DB.MaxOpenCons)
 		Envs.DB.MaxIdleCons = utils.GetIntEnv("DB_MAX_IdLE_CONS", Envs.DB.MaxIdleCons)
 		Envs.DB.ConnMaxLifetime = utils.GetIntEnv("DB_CONN_MAX_LIFETIME", Envs.DB.ConnMaxLifetime)
-		Envs.Notification.SMTPHost = utils.GetEnv("SMTP_HOST", Envs.Notification.SMTPHost)
-		Envs.Notification.SMTPPort = utils.GetEnv("SMTP_PORT", Envs.Notification.SMTPPort)
-		Envs.Notification.SMTPuthEmail = utils.GetEnv("SMTP_AUTH_EMAIL", Envs.Notification.SMTPuthEmail)
-		Envs.Notification.SMTPAuthPassword = utils.GetEnv("SMTP_AUTH_PASSWORD", Envs.Notification.SMTPAuthPassword)
+		Envs.Notification.MailHost = utils.GetEnv("MAIL_HOST", Envs.Notification.MailHost)
+		Envs.Notification.MailPort = utils.GetEnv("MAIL_PORT", Envs.Notification.MailPort)
+		Envs.Notification.MailUser = utils.GetEnv("MAIL_USER", Envs.Notification.MailUser)
+		Envs.Notification.MailPassword = utils.GetEnv("MAIL_PASSWORD", Envs.Notification.MailPassword)
 		Envs.DzikraPostgres.Host = utils.GetEnv("DZIKRA_POSTGRES_HOST", Envs.DzikraPostgres.Host)
 		Envs.DzikraPostgres.Port = utils.GetEnv("DZIKRA_POSTGRES_PORT", Envs.DzikraPostgres.Port)
 		Envs.DzikraPostgres.Username = utils.GetEnv("DZIKRA_POSTGRES_USER", Envs.DzikraPostgres.Username)

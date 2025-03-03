@@ -17,18 +17,18 @@ type Email struct {
 func (e *Email) SendEmail() error {
 	mailer := gomail.NewMessage()
 	mailer.SetHeader("To", e.To)
-	mailer.SetHeader("From", config.Envs.Notification.SMTPuthEmail)
+	mailer.SetHeader("From", config.Envs.Notification.MailUser)
 	mailer.SetHeader("Subject", e.Subject)
 	mailer.SetBody("text/html", e.Body)
 
-	smtpPort := config.Envs.Notification.SMTPPort
+	smtpPort := config.Envs.Notification.MailPort
 	intSmtpPort, _ := strconv.Atoi(smtpPort)
 
 	dialer := gomail.NewDialer(
-		config.Envs.Notification.SMTPHost,
+		config.Envs.Notification.MailHost,
 		intSmtpPort,
-		config.Envs.Notification.SMTPuthEmail,
-		config.Envs.Notification.SMTPAuthPassword,
+		config.Envs.Notification.MailUser,
+		config.Envs.Notification.MailPassword,
 	)
 
 	err := dialer.DialAndSend(mailer)
