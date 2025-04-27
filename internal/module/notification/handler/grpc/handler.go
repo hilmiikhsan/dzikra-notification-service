@@ -3,13 +3,13 @@ package grpc
 import (
 	"context"
 
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/cmd/proto/notification"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/adapter"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification/dto"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification/ports"
-	notificationTemplateRepository "github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification/repository"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification/service"
-	notificationHistoryRepository "github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification_history/repository"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/cmd/proto/notification"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/adapter"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification/dto"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification/ports"
+	notificationTemplateRepository "github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification/repository"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification/service"
+	notificationHistoryRepository "github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification_history/repository"
 	"github.com/gofiber/fiber/v2/log"
 )
 

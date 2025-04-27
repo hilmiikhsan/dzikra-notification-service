@@ -3,7 +3,7 @@ package adapter
 import (
 	"time"
 
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/infrastructure/config"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/infrastructure/config"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/rs/zerolog/log"

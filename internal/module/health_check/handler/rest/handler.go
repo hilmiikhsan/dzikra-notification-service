@@ -1,10 +1,10 @@
 package rest
 
 import (
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/health_check/ports"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/health_check/service"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/pkg/err_msg"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/pkg/response"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/health_check/ports"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/health_check/service"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/pkg/err_msg"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/pkg/response"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog/log"
 )

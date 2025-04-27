@@ -5,12 +5,12 @@ import (
 	"context"
 	"text/template"
 
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/constants"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/external"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification/dto"
-	notificationTemplatePorts "github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification/ports"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification_history/entity"
-	notificationHistoryPorts "github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification_history/ports"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/constants"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/external"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification/dto"
+	notificationTemplatePorts "github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification/ports"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification_history/entity"
+	notificationHistoryPorts "github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification_history/ports"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )

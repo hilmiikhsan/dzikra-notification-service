@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/cmd"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/adapter"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/infrastructure/config"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/cmd"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/adapter"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/infrastructure/config"
 	"github.com/rs/zerolog/log"
 )
 

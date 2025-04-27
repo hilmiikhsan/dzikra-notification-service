@@ -3,7 +3,7 @@ package ports
 import (
 	"context"
 
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/notification_history/entity"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification_history/entity"
 )
 
 type NotificationHistoryRepository interface {

@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/health_check/ports"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/health_check/ports"
 	"github.com/rs/zerolog/log"
 )
 

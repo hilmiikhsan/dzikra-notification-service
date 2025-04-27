@@ -1,6 +1,6 @@
 package response
 
-import errmsg "github.com/Digitalkeun-Creative/be-dzikra-notification-service/pkg/err_msg"
+import errmsg "github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/pkg/err_msg"
 
 type Response map[string]any
 

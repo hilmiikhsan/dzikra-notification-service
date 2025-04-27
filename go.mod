@@ -1,6 +1,8 @@
-module github.com/Digitalkeun-Creative/be-dzikra-notification-service
+module github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service
 
-go 1.22.2
+go 1.22.5
+
+toolchain go1.24.1
 
 require (
 	github.com/go-playground/validator/v10 v10.24.0
@@ -11,6 +13,7 @@ require (
 	github.com/lib/pq v1.10.9
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.33.0
+	github.com/sonitx/uuidv7 v1.0.2
 	google.golang.org/grpc v1.70.0
 	google.golang.org/protobuf v1.35.2
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df

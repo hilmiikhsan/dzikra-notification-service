@@ -3,8 +3,8 @@ package cmd
 import (
 	"flag"
 
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/db/seeds"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/adapter"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/db/seeds"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/adapter"
 	"github.com/rs/zerolog/log"
 )
 

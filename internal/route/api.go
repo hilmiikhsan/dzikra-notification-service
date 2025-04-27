@@ -1,8 +1,8 @@
 package route
 
 import (
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/internal/module/health_check/handler/rest"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/pkg/response"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/health_check/handler/rest"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/pkg/response"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog/log"
 )

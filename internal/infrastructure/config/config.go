@@ -5,8 +5,8 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/pkg/config"
-	"github.com/Digitalkeun-Creative/be-dzikra-notification-service/pkg/utils"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/pkg/config"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/pkg/utils"
 )
 
 var (
