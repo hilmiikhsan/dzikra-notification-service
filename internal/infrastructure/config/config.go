@@ -53,6 +53,10 @@ type Config struct {
 		Password string `env:"DZIKRA_REDIS_PASSWORD" env-default:"password"`
 		Database int    `env:"DZIKRA_REDIS_DB" env-default:"0"`
 	}
+	FirebaseMessaging struct {
+		CredentialServiceAccount string `env:"FIREBASE_MESSAGING_CREDENTIAL_SERVICE_ACCOUNT" env-default:""`
+		ProjectID                string `env:"FIREBASE_MESSAGING_PROJECT_ID" env-default:""`
+	}
 }
 
 // Option is Configure type return func.
@@ -115,6 +119,7 @@ func (c *Configure) Initialize() {
 		Envs.RedisDB.Port = utils.GetEnv("DZIKRA_REDIS_PORT", Envs.RedisDB.Port)
 		Envs.RedisDB.Password = utils.GetEnv("DZIKRA_REDIS_PASSWORD", Envs.RedisDB.Password)
 		Envs.RedisDB.Database = utils.GetIntEnv("DZIKRA_REDIS_DB", Envs.RedisDB.Database)
+		Envs.FirebaseMessaging.CredentialServiceAccount = utils.GetEnv("FIREBASE_MESSAGING_CREDENTIAL_SERVICE_ACCOUNT", Envs.FirebaseMessaging.CredentialServiceAccount)
 	})
 }
 

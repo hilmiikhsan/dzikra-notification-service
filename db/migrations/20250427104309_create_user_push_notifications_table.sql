@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS user_push_notifications (
     detail VARCHAR(255) NULL,
     url VARCHAR(255) NULL,
     user_id UUID NOT NULL,
+    n_type_id VARCHAR(50) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL
