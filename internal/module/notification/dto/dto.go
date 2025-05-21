@@ -45,3 +45,13 @@ type SendBatchFcmNotificationRequest struct {
 	Title    string   `json:"title"`
 	Body     string   `json:"body"`
 }
+
+type SendFcmNotificationRequest struct {
+	FcmToken        string `json:"fcm_token"`
+	Title           string `json:"title"`
+	Body            string `json:"body"`
+	UserID          string `json:"user_id"`
+	IsStatusChanged bool   `json:"is_status_changed"`
+	FullName        string `json:"full_name"`
+	Email           string `json:"email"`
+}

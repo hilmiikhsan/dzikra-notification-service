@@ -22,6 +22,7 @@ type NotificationTemplateService interface {
 	CreateNotification(ctx context.Context, req dto.CreateNotificationRequest) error
 	GetListNotification(ctx context.Context, page, limit int, search string) (*dto.GetListNotificationResponse, error)
 	SendFcmBatchNotification(ctx context.Context, req *dto.SendBatchFcmNotificationRequest) error
+	SendFcmNotification(ctx context.Context, req *dto.SendFcmNotificationRequest) error
 }
 
 type NotificationEmailAPI interface {
@@ -30,4 +31,5 @@ type NotificationEmailAPI interface {
 	CreateNotification(ctx context.Context, req *notification.CreateNotificationRequest) (*notification.CreateNotificationResponse, error)
 	GetListNotification(ctx context.Context, req *notification.GetListNotificationRequest) (*notification.GetListNotificationResponse, error)
 	SendFcmBatchNotification(ctx context.Context, req *notification.SendFcmBatchNotificationRequest) (*notification.SendFcmBatchNotificationResponse, error)
+	SendFcmNotification(ctx context.Context, req *notification.SendFcmNotificationRequest) (*notification.SendFcmNotificationResponse, error)
 }

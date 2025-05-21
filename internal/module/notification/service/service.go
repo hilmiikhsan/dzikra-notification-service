@@ -208,3 +208,80 @@ func (s *notificationTemplateService) SendFcmBatchNotification(ctx context.Conte
 
 	return nil
 }
+
+func (s *notificationTemplateService) SendFcmNotification(ctx context.Context, req *dto.SendFcmNotificationRequest) error {
+	go func(token, title, body string) {
+		if req.FcmToken != "" {
+			bg := context.Background()
+			msg := &messaging.Message{
+				Notification: &messaging.Notification{
+					Title: title,
+					Body:  body,
+				},
+				Token: token,
+			}
+
+			id, err := s.fcmClient.Send(bg, msg)
+			if err != nil {
+				log.Error().Err(err).Msg("Failed to send FCM notification")
+				return
+			}
+
+			log.Info().Msgf("fcm sent messageID=%s", id)
+
+			return
+		}
+
+		email := external.Email{
+			FullName:        req.FullName,
+			Email:           req.Email,
+			IsStatusChanged: req.IsStatusChanged,
+		}
+
+		err := email.SenFcmNotificationEmail()
+		if err != nil {
+			log.Error().Err(err).Msg("Failed to send email notification")
+			return
+		}
+	}(req.FcmToken, req.Title, req.Body)
+
+	// Begin transaction
+	tx, err := s.db.Beginx()
+	if err != nil {
+		log.Error().Err(err).Any("payload", req).Msg("service::SendFcmNotification - Failed to begin transaction")
+		return err_msg.NewCustomErrors(fiber.StatusInternalServerError, err_msg.WithMessage(constants.ErrInternalServerError))
+	}
+	defer func() {
+		if err != nil {
+			if rollbackErr := tx.Rollback(); rollbackErr != nil {
+				log.Error().Err(rollbackErr).Any("payload", req).Msg("service::SendFcmNotification - Failed to rollback transaction")
+			}
+		}
+	}()
+
+	userID, err := uuid.Parse(req.UserID)
+	if err != nil {
+		log.Error().Err(err).Msg("service::SendFcmNotification - Failed to parse user ID")
+		return errors.Wrap(err, "failed to parse user ID")
+	}
+
+	err = s.notificationTemplateRepository.InsertNewNotification(ctx, tx, &notification.UserPushNotification{
+		Title:   req.Title,
+		Detail:  req.Body,
+		Url:     "",
+		UserID:  userID,
+		NTypeID: "INFO",
+	})
+	if err != nil {
+		log.Error().Err(err).Msg("serve::SendFcmNotification - Failed to create notification")
+		return errors.Wrap(err, "failed to create notification")
+	}
+
+	// commit transaction
+	if err = tx.Commit(); err != nil {
+		log.Error().Err(err).Msg("service::SendFcmNotification - failed to commit transaction")
+		return err_msg.NewCustomErrors(fiber.StatusInternalServerError, err_msg.WithMessage(constants.ErrInternalServerError))
+	}
+
+	return nil
+}

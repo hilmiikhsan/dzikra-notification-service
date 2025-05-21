@@ -173,3 +173,25 @@ func (api *NotificationEmailAPI) SendFcmBatchNotification(ctx context.Context, r
 		Message: "success",
 	}, nil
 }
+
+func (api *NotificationEmailAPI) SendFcmNotification(ctx context.Context, req *notification.SendFcmNotificationRequest) (*notification.SendFcmNotificationResponse, error) {
+	err := api.EmailService.SendFcmNotification(ctx, &dto.SendFcmNotificationRequest{
+		FcmToken:        req.FcmToken,
+		Title:           req.Title,
+		Body:            req.Body,
+		UserID:          req.UserId,
+		IsStatusChanged: req.IsStatusChanged,
+		FullName:        req.FullName,
+		Email:           req.Email,
+	})
+	if err != nil {
+		log.Error().Err(err).Msg("error sending fcm notification")
+		return &notification.SendFcmNotificationResponse{
+			Message: "failed to send fcm notification",
+		}, nil
+	}
+
+	return &notification.SendFcmNotificationResponse{
+		Message: "success",
+	}, nil
+}
