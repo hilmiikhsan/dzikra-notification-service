@@ -195,3 +195,38 @@ func (api *NotificationEmailAPI) SendFcmNotification(ctx context.Context, req *n
 		Message: "success",
 	}, nil
 }
+
+func (api *NotificationEmailAPI) SendTransactionEmail(ctx context.Context, req *notification.SendTransactionEmailRequest) (*notification.SendTransactionEmailResponse, error) {
+	var items []dto.OrderItem
+	for _, item := range req.Items {
+		items = append(items, dto.OrderItem{
+			ProductName:  item.ProductName,
+			Quantity:     int(item.Quantity),
+			ProductPrice: int(item.ProductPrice),
+			TotalPrice:   int(item.TotalPrice),
+		})
+	}
+
+	err := api.EmailService.SendTransactionEmail(ctx, &dto.SendTransactionEmailRequest{
+		TOName:                 req.ToName,
+		TOEmail:                req.ToEmail,
+		Items:                  items,
+		TotalProductAmount:     int(req.TotalProductAmount),
+		TotalTransactionAmount: int(req.TotalTransactionAmount),
+		TotalDiscount:          int(req.TotalDiscount),
+		TotalQuantity:          int(req.TotalQuantity),
+		TaxAmount:              int(req.TaxAmount),
+		TaxValue:               int(req.TaxValue),
+		IsStatusChanged:        req.IsStatusChanged,
+	})
+	if err != nil {
+		log.Error().Err(err).Msg("error sending transaction notification email")
+		return &notification.SendTransactionEmailResponse{
+			Message: "failed to send transaction notification email",
+		}, nil
+	}
+
+	return &notification.SendTransactionEmailResponse{
+		Message: "success",
+	}, nil
+}

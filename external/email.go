@@ -5,7 +5,9 @@ import (
 	"strconv"
 	"text/template"
 
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/constants"
 	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/infrastructure/config"
+	"github.com/Digitalkeun-Creative/be-dzikra-ecommerce-notification-service/internal/module/notification/dto"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/gomail.v2"
 )
@@ -67,6 +69,62 @@ func (e *Email) SenFcmNotificationEmail() error {
 
 	var bodyBuf bytes.Buffer
 	t := template.Must(template.New("email").Parse(tpl))
+	if err := t.Execute(&bodyBuf, data); err != nil {
+		log.Error().Err(err).Msg("Failed to execute template")
+		return err
+	}
+
+	mailer := gomail.NewMessage()
+	mailer.SetHeader("From", e.FullName)
+	mailer.SetHeader("To", e.Email)
+	mailer.SetHeader("Subject", "Order Status")
+	mailer.SetBody("text/html", bodyBuf.String())
+
+	smtpPort := config.Envs.Notification.MailPort
+	intSmtpPort, _ := strconv.Atoi(smtpPort)
+
+	dialer := gomail.NewDialer(
+		config.Envs.Notification.MailHost,
+		intSmtpPort,
+		config.Envs.Notification.MailUser,
+		config.Envs.Notification.MailPassword,
+	)
+
+	if err := dialer.DialAndSend(mailer); err != nil {
+		log.Error().Err(err).Msg("Failed to send email")
+		return err
+	}
+
+	log.Info().Msgf("Email sent to %s", e.Email)
+
+	return nil
+}
+
+func (e *Email) SendTransactionEmail(req *dto.SendTransactionEmailRequest) error {
+	discount := req.TotalProductAmount * req.TotalDiscount / 100
+
+	data := struct {
+		Name                   string
+		Items                  []dto.OrderItem
+		TotalQuantity          int
+		Disc                   int
+		TaxValue               int
+		TaxAmount              int
+		TotalProductAmount     int
+		TotalTransactionAmount int
+	}{
+		Name:                   req.TOName,
+		Items:                  req.Items,
+		TotalQuantity:          req.TotalQuantity,
+		Disc:                   discount,
+		TaxValue:               req.TaxValue,
+		TaxAmount:              req.TaxAmount,
+		TotalProductAmount:     req.TotalProductAmount,
+		TotalTransactionAmount: req.TotalTransactionAmount,
+	}
+
+	var bodyBuf bytes.Buffer
+	t := template.Must(template.New("email").Parse(constants.TemplateTransactionEmail))
 	if err := t.Execute(&bodyBuf, data); err != nil {
 		log.Error().Err(err).Msg("Failed to execute template")
 		return err

@@ -19,6 +19,8 @@ service NotificationService {
     returns (SendFcmBatchNotificationResponse);
   rpc SendFcmNotification (SendFcmNotificationRequest)
     returns (SendFcmNotificationResponse);
+  rpc SendTransactionEamil (SendTransactionEmailRequest)
+    returns (SendTransactionEmailResponse);
 }
 
 // The request message containing notification details
@@ -103,4 +105,28 @@ message SendFcmNotificationRequest {
 
 message SendFcmNotificationResponse {
   string message = 1;
+}
+
+message SendTransactionEmailRequest {
+  string to_name = 1;
+  string to_email = 2;
+  repeated OrderItem items = 3;
+  int64 total_product_amount = 4;
+  int64 total_transaction_amount = 5;
+  int64 total_discount = 6;
+  int64 total_quantity = 7;
+  int64 tax_amount = 8;
+  int64 tax_value = 9;
+  bool is_status_changed = 10;
+}
+
+message SendTransactionEmailResponse {
+  string message = 1;
+}
+
+message OrderItem {
+  string product_name = 1;
+  int64 quantity = 2;
+  int64 product_price = 3;
+  int64 total_price = 4;
 }

@@ -55,3 +55,23 @@ type SendFcmNotificationRequest struct {
 	FullName        string `json:"full_name"`
 	Email           string `json:"email"`
 }
+
+type SendTransactionEmailRequest struct {
+	TOName                 string      `json:"to_name"`
+	TOEmail                string      `json:"to_email"`
+	Items                  []OrderItem `json:"items"`
+	TotalProductAmount     int         `json:"total_product_amount"`
+	TotalTransactionAmount int         `json:"total_transaction_amount"`
+	TotalDiscount          int         `json:"total_discount"`
+	TotalQuantity          int         `json:"total_quantity"`
+	TaxAmount              int         `json:"tax_amount"`
+	TaxValue               int         `json:"tax_value"`
+	IsStatusChanged        bool        `json:"is_status_changed"`
+}
+
+type OrderItem struct {
+	ProductName  string `json:"product_name"`
+	Quantity     int    `json:"quantity"`
+	ProductPrice int    `json:"product_price"`
+	TotalPrice   int    `json:"total_price"`
+}

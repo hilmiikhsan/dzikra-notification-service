@@ -285,3 +285,19 @@ func (s *notificationTemplateService) SendFcmNotification(ctx context.Context, r
 
 	return nil
 }
+
+func (s *notificationTemplateService) SendTransactionEmail(ctx context.Context, req *dto.SendTransactionEmailRequest) error {
+	email := external.Email{
+		FullName:        req.TOName,
+		Email:           req.TOEmail,
+		IsStatusChanged: req.IsStatusChanged,
+	}
+
+	err := email.SendTransactionEmail(req)
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to send transaction email")
+		return err_msg.NewCustomErrors(fiber.StatusInternalServerError, err_msg.WithMessage(constants.ErrInternalServerError))
+	}
+
+	return nil
+}
